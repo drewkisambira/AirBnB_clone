@@ -9,7 +9,7 @@ import datetime
 
 
 class BaseModel:
-    def __init__(self, created_at, updated_at, id=uuid.uuid4()):
+    def __init__(self, created_at=0, updated_at=0, id=uuid.uuid4()):
         self.id = id
         self.created_at = created_at
         self.updated_at = updated_at
@@ -21,8 +21,8 @@ class BaseModel:
         """define method that updates updated_at with current datetime
         """
 
-        updated_at = datetime.now()
+        updated_at = datetime.date()
         return updated_at
 
     def to_dict(self):
-        return {}
+        return self.__dict__
