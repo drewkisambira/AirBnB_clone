@@ -31,5 +31,5 @@ class BaseModel:
     def to_dict(self):
         for k, v in self.__dict__.items():
             return {'__class__': self.__class__.__name__,
-                    'updated_at': self.updated_at.isoformat(),
+                    'updated_at': self.updated_at.isoformat(), 'id': self.id,
                     'created_at': self.created_at.isoformat()}
