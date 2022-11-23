@@ -1,28 +1,35 @@
 #!/usr/bin/python3
-""" module creates BaseModel class that defines all
-common attributes for other classes
+""" project base class
 """
 
 
 import uuid
-import datetime
+from datetime import datetime
 
 
 class BaseModel:
-    def __init__(self, created_at=0, updated_at=0, id=uuid.uuid4()):
-        self.id = id
-        self.created_at = created_at
-        self.updated_at = updated_at
+    """
+    define base class
+    """
+    
+    def __init__(self):
+        self.id = str(uuid.uuid4())
+        self.created_at = datetime.today()
+        self.updated_at = datetime.today()      
+                
 
     def __str__(self):
-        return "[BaseModel] ({}) {}".format(self.id, self.__dict__)
+        return "[{:s}] ({:s}) {:s}".format(
+            self.__class__.__name__, self.id, str(self.__dict__))
 
     def save(self):
-        """define method that updates updated_at with current datetime
+        """method that updates updated_at with current datetime
         """
 
-        updated_at = datetime.date()
-        return updated_at
+        self.updated_at = datetime.today()
 
     def to_dict(self):
-        return self.__dict__
+        for k, v in self.__dict__.items():
+            return {'__class__': self.__class__.__name__,
+                    'updated_at': self.updated_at.isoformat(),
+                    'created_at': self.created_at.isoformat()}
