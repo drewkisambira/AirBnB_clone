@@ -95,7 +95,7 @@ $
 <oi><a href="https://github.com/dtumuhaise">Davis Tumuhaise</a></oi>
 </li>
 <li>
-<oi><a href="https://github.com/dtumuhaise">Kisambira Andrew</a></oi>
+<oi><a href="https://github.com/drewkisambira">Kisambira Andrew</a></oi>
 </li>
 
 
