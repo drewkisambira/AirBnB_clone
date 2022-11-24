@@ -51,7 +51,7 @@ save(self) - serializes __objects to the JSON file (path: __file_path)
 reload(self) - deserializes the JSON file to __objects (only if the JSON file (__file_path) exists
 
 <h1>Installation<h1>
-git clone git@github.com:Janengethe/AirBnB_clone.git
+git clone git@github.com:dtumuhaise/AirBnB_clone.git
 cd AirBnB_clone
 
 <h1>Usage</h1)
