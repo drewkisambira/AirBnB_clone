@@ -27,7 +27,7 @@ class FileStorage():
 
     def reload(self):
         try:
-            with open("FileStorage.__file_path", encoding='utf-8') as f:
+            with open(FileStorage.__file_path, encoding='utf-8') as f:
                 f_dict = json.load(f)
                 cls = '__class__'
                 for key, value in f_dict.items():
