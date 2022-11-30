@@ -17,14 +17,13 @@ class HBNBCommand(cmd.Cmd):
         """ Interprets Ctrl + D
         """
 
-        print()
         return True
 
     def do_quit(self, line):
         """ Quit command to exit the program
         """
 
-        raise SystemExit
+        return True
 
 
 if __name__ == '__main__':
