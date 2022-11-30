@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 """
 Module console
 contains the entry point to the command interpreter
@@ -20,6 +21,7 @@ from models.user import User
 
 class HBNBCommand(cmd.Cmd):
     """ command line interpreter"""
+
     prompt = "(hbnb) "
     all_classes = {'BaseModel': BaseModel, 'User': User, 'State': State,
                    'City': City, 'Amenity': Amenity, 'Place': Place,
@@ -28,12 +30,14 @@ class HBNBCommand(cmd.Cmd):
     def do_EOF(self, line):
         """ Interprets Ctrl + D
         """
+
         print()
         return True
 
     def do_quit(self, line):
         """ Quit command to exit the program
         """
+
         raise SystemExit
 
     def emptyline(self):
@@ -41,6 +45,7 @@ class HBNBCommand(cmd.Cmd):
         It ignores the last nonempty
         command entered and does nothing
         """
+
         pass
 
     def do_create(self, line):
@@ -49,6 +54,7 @@ class HBNBCommand(cmd.Cmd):
             None
         Prints id of the new BaseModel instance
         """
+
         if len(line) == 0:
             print("** class name missing **")
         elif line not in HBNBCommand.all_classes.keys():
@@ -63,6 +69,7 @@ class HBNBCommand(cmd.Cmd):
         Prints the string representation of an instance based on the class name
         and id. Example: $ show BaseModel 1234-1234-1234.
         """
+
         a_list = line.split(" ")
         if len(line) == 0:
             print("** class name missing **")
@@ -87,6 +94,7 @@ class HBNBCommand(cmd.Cmd):
         Deletes an instance based on the class name
         and id. Example: (hbnb)  destroy BaseModel 1234-1234-1234.
         """
+
         a_list = line.split(" ")
         if len(line) == 0:
             print("** class name missing **")
@@ -112,6 +120,7 @@ class HBNBCommand(cmd.Cmd):
         Example: (hbnb) all BaseModel
         or (hbnb) all
         """
+
         obj_list = []
         all_list = []
         all_instances = storage.all()
@@ -134,6 +143,7 @@ class HBNBCommand(cmd.Cmd):
         updating attribute (save the change into the JSON file). Ex: (hbnb)
         update BaseModel 1234-1234-1234 email "aibnb@holbertonschool.com".
         """
+
         a_list = line.split(" ")
         if len(line) == 0:
             print("** class name missing **")
@@ -163,6 +173,7 @@ class HBNBCommand(cmd.Cmd):
         If this method is not overridden, it prints an error message and
         returns.
         """
+
         if len(line) == 0:
             return
         else:
@@ -190,8 +201,8 @@ class HBNBCommand(cmd.Cmd):
                         _id = my_list[0][1:-1]
                         if type(my_list[1]) == dict:
                             for att, val in my_list[1].items():
-                                l = class_arg + " " + _id + " " + att + val
-                                HBNBCommand.do_update(self, l)
+                                a = class_arg + " " + _id + " " + att + val
+                                HBNBCommand.do_update(self, a)
                         else:
                             if my_list[2][0] == '"' and my_list[2][-1] == '"':
                                 val = my_list[2][1:-1]
@@ -201,9 +212,9 @@ class HBNBCommand(cmd.Cmd):
                                 attr = my_list[1][1:-1]
                             else:
                                 attr = my_list[1]
-                            l = str(class_arg + " " + _id + " " + attr +
+                            a = str(class_arg + " " + _id + " " + attr +
                                     " " + val)
-                            HBNBCommand.do_update(self, l)
+                            HBNBCommand.do_update(self, a)
                     else:
                         pass
                 else:
@@ -216,6 +227,7 @@ class HBNBCommand(cmd.Cmd):
         """
         Returns a list containing string representation of instances
         """
+
         count = 0
         obj_list = []
         all_list = []
@@ -232,6 +244,7 @@ class HBNBCommand(cmd.Cmd):
                     obj_list.append(all_instances[ke_y])
                     count = count + 1
             return(count)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
