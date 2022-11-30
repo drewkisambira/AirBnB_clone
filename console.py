@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 """
 Module console
 contains the entry point to the command interpreter
