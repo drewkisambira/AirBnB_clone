@@ -1,8 +1,9 @@
 #!/usr/bin/python3
+"""
+create a uniq FileStorage instance for your application
+"""
 
 
 from models.engine.file_storage import FileStorage
-from importlib import reload
-
 storage = FileStorage()
 storage.reload()

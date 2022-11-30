@@ -7,6 +7,7 @@ from uuid import uuid4
 from datetime import datetime
 from models import storage
 
+
 class BaseModel:
     """
     define base class
@@ -35,7 +36,7 @@ class BaseModel:
         method torepresent calss objects as a string
         """
 
-        return "[{:s}] ({:s}) {:s}".format(
+        return "[{}] ({}) {}".format(
             self.__class__.__name__, self.id, str(self.__dict__))
 
     def save(self):
