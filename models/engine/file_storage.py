@@ -13,8 +13,11 @@ class FileStorage():
     private class attributes
     """
 
-    __file_path = "file.json"
+   __file_path = "BaseModel.json"
     __objects = {}
+    all_classes = {'BaseModel': BaseModel, 'User': User, 'State': State,
+                   'City': City, 'Amenity': Amenity, 'Place': Place,
+                   'Review': Review}
 
     def all(self):
         """
