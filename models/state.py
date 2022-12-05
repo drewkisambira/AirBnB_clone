@@ -1,8 +1,5 @@
 #!/usr/bin/python3
-"""
-Module state defines a class User that inherits from BaseModel
-Public class attributes:
-                   name: string - empty string
+"""State module
 """
 
 
@@ -10,9 +7,7 @@ from models.base_model import BaseModel
 
 
 class State(BaseModel):
+    """Define state class
     """
-    Class State inherits from BaseModel
-    Public class attributes:
-                       name: string - empty string
-    """
+
     name = ""
