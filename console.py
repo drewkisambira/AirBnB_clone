@@ -22,6 +22,7 @@ from models.review import Review
 
 class HBNBCommand(cmd.Cmd):
     """ Holberton command prompt to access models data """
+
     prompt = '(hbnb) '
     my_dict = {
         "BaseModel": BaseModel,
@@ -34,28 +35,33 @@ class HBNBCommand(cmd.Cmd):
             }
 
     def do_nothing(self, arg):
+
         """ Does nothing """
         pass
 
     def do_quit(self, arg):
         """ Close program and saves safely data """
+
         return True
 
     def do_EOF(self, arg):
         """ Close program and saves safely data, when
         user input is CTRL + D
         """
+
         print("")
         return True
 
     def emptyline(self):
         """ Overrides the empty line method """
+
         pass
 
     def do_create(self, arg):
         """ Creates a new instance of the basemodel class
         Structure: create [class name]
         """
+
         if not arg:
             print("** class name missing **")
             return
@@ -73,6 +79,7 @@ class HBNBCommand(cmd.Cmd):
         based on the class name and id
         Structure: show [class name] [id]
         """
+
         tokens = shlex.split(arg)
         if len(tokens) == 0:
             print("** class name missing **")
@@ -98,6 +105,7 @@ class HBNBCommand(cmd.Cmd):
         (saves the changes into the JSON file)
         Structure: destroy [class name] [id]
         """
+
         tokens = shlex.split(arg)
         if len(tokens) == 0:
             print("** class name missing **")
@@ -123,7 +131,8 @@ class HBNBCommand(cmd.Cmd):
         based or not on the class name
         Structure: all [class name] or all
         """
-        # prints the whole file
+
+
         storage.reload()
         my_json = []
         objects_dict = storage.all()
@@ -148,6 +157,7 @@ class HBNBCommand(cmd.Cmd):
         (save the change into the JSON file).
         Structure: update [class name] [id] [arg_name] [arg_value]
         """
+
         if not arg:
             print("** class name missing **")
             return
@@ -187,6 +197,7 @@ class HBNBCommand(cmd.Cmd):
         (save the change into the JSON file).
         Structure: update [class name] [id] [dictionary]
         """
+
         if not arg:
             print("** class name missing **")
             return
@@ -225,6 +236,7 @@ class HBNBCommand(cmd.Cmd):
         """
         Counts number of instances of a class
         """
+
         counter = 0
         objects_dict = storage.all()
         for key in objects_dict:
@@ -234,6 +246,7 @@ class HBNBCommand(cmd.Cmd):
 
     def default(self, arg):
         """ handle new ways of inputing data """
+
         val_dict = {
             "all": self.do_all,
             "count": self.do_count,
