@@ -19,71 +19,76 @@ from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
-    """ command line interpreter"""
-
+    """
+        Define HBNBCommand class for console
+    """
     prompt = "(hbnb) "
-    classes = ['BaseModel', 'User', 'Place', 'State',
+    all_classes = ['BaseModel', 'User', 'Place', 'State',
                    'City', 'Amenity', 'Review']
 
-    def do_quit(self, line):
-        """ Quit command to exit the program
+    def do_quit(self, args):
         """
-
+            Command to quit from the command interpreter
+        """
         return True
 
-    def do_EOF(self, line):
-        """ Interprets Ctrl + D
+    def do_EOF(self, args):
         """
-
-        print()
+            Command to exit from the command interpreter
+        """
         return True
+
+    def help_quit(self):
+        """
+            Command to show quit documentation
+        """
+        print("Quit command to exit the program\n")
 
     def emptyline(self):
-        """nothing excuted when Enter is pressed"""
-
+        """
+            Command do nothing when emptyline appears
+        """
         pass
 
     def do_create(self, args):
-        """ create instance of base model"""
-
-        arg_list = args.split()
-        if len(arg_list) == 0:
+        """Creates a new instance in all_classes, saves it to the JSON file
+            and prints the id
+        """
+        arguments_list = args.split()
+        if len(arguments_list) == 0:
             print('** class name missing **')
             return
         try:
-            d = eval(arg_list[0] + '()')
-            d.save()
-            print(d.id)
+            dummy = eval(arguments_list[0] + '()')
+            dummy.save()
+            print(dummy.id)
         except:
             print("** class doesn't exist **")
 
     def do_show(self, args):
         """Prints the string representation of an instance based
-        on the class name and id
+            on the class name and id
         """
+        arguments_list = args.split()
 
-        arg_list = args.split()
-
-        if validate(arg_list):
-            obj_ref = validate(arg_list)
+        if validate(arguments_list):
+            objeto_reference = validate(arguments_list)
             all_instances = models.storage.all()
 
-            if obj_ref in all_instances.keys():
-                reference = all_instances[obj_ref]
+            if objeto_reference in all_instances.keys():
+                reference = all_instances[objeto_reference]
                 print(reference)
             else:
                 print("** no instance found **")
                 return
 
     def do_destroy(self, args):
+        """Deletes an instance based on the class name and id,
+            save the change into the JSON file
         """
-         Deletes an instance based on the class name and id
-        """
-
-        arg_list = args.split()
-
-        if validate(arg_list):
-            obj_reference = validate(arg_list)
+        arguments_list = args.split()
+        if validate(arguments_list):
+            obj_reference = validate(arguments_list)
             all_instances = models.storage.all()
 
             if obj_reference in all_instances.keys():
@@ -97,12 +102,11 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of all instances
             based or not on the class name
         """
-
         instances = models.storage.all()
         if args:
             arg_list = args.split()
             print(arg_list[0])
-            if arg_list[0] not in self.classes:
+            if arg_list[0] not in self.all_classes:
                 print("** class doesn't exist **")
             else:
                 new_list = [str(instances[obj]) for obj in instances.keys()
@@ -116,14 +120,13 @@ class HBNBCommand(cmd.Cmd):
         """Update an specific dictionary based in the class name
             and the id reference
         """
-
-        arg_list = args.split()
-        if validate(args_list):
-            obj_ref = validate(arg_list)
+        arguments_list = args.split()
+        if validate(arguments_list):
+            objeto_reference = validate(arguments_list)
             all_instances = models.storage.all()
 
-            if obj_ref in all_instances.keys():
-                obj = all_instances[obj_ref]
+            if objeto_reference in all_instances.keys():
+                obj = all_instances[objeto_reference]
                 len_arg_list = len(arguments_list)
 
                 if len_arg_list < 3:
@@ -134,42 +137,42 @@ class HBNBCommand(cmd.Cmd):
                     return
                 else:
                     try:
-                        value = int(arg_list[3].replace('"', ""))
+                        value = int(arguments_list[3].replace('"', ""))
                     except:
                         try:
-                            value = float(arg_list[3].replace('"', ""))
+                            value = float(arguments_list[3].replace('"', ""))
                         except:
                             try:
-                                value = str(arg_list[3].replace('"', ""))
+                                value = str(arguments_list[3].replace('"', ""))
                             except:
                                 pass
-                    obj.__dict__[arg_list[2]] = value
+                    obj.__dict__[arguments_list[2]] = value
                     models.storage.save()
                     return
             else:
                 print("** no instance found **")
                 return
 
+
 def validate(list_args):
-        """Function to validate content in list or arguments
-        """
+    """Function to validate content in list or arguments
+    """
+    if list:
+        len_list = len(list_args)
+        if len_list < 1:
+            print("** class name missing **")
+            return None
 
-        if list:
-            len_list = len(list_args)
-            if len_list < 1:
-                print("** class name missing **")
-                return None
+        if (list_args[0] not in HBNBCommand.all_classes):
+            print("** class doesn't exist **")
+            return None
 
-            if (list_args[0] not in HBNBCommand.classes):
-                print("** class doesn't exist **")
-                return None
+        if len_list < 2:
+            print("** instance id missing **")
+            return None
 
-            if len_list < 2:
-                print("** instance id missing **")
-                return None
-
-            obj_reference = list_args[0] + '.' + list_args[1]
-            return    
+        obj_reference = list_args[0] + '.' + list_args[1]
+        return obj_reference
 
 
 if __name__ == '__main__':
