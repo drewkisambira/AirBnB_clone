@@ -33,11 +33,6 @@ div.locations, div.amenities
     margin-left: 45px;
     position: relative;
 }
-
-/* .amenities
-{
-    position: absolute;
-} */
 .locations
 {
     border-right: 1px solid #DDDDDD;
@@ -59,7 +54,7 @@ div.popover
 {    
     display: none;
     background-color: #FAFAFA;
-    width: 100%; 
+    width: 126%; 
     border: solid #DDDDDD 1px; 
     border-radius: 4px;
     left: -1px;
